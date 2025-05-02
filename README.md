@@ -27,9 +27,9 @@ Aztec, merkeziyetsiz ve gizlilik odaklı bir ağ inşa ediyor ve sequencer node 
 
 ⚙️ Ön Gereksinimler ⚙️
 
-🔸 Sepolia Ethereum RPC için [Alchemy](https://dashboard.alchemy.com/apps) veya [Infura](https://developer.metamask.io/register) kullanabilirsiniz.
-🔸 Consensus URL (Beacon RPC URL) için [Chainstack](https://chainstack.com/global-nodes) kullanabilirsiniz.
-🔸 Validator olarak kaydolmak istiyorsanız, yeni bir evm cüzdanı oluşturun ve en az 2.5 Sepolia ETH ile fonlayın.
+🔸 Sepolia Ethereum RPC için [Alchemy](https://dashboard.alchemy.com/apps) veya [Infura](https://developer.metamask.io/register) kullanabilirsiniz. <br>
+🔸 Consensus URL (Beacon RPC URL) için [Chainstack](https://chainstack.com/global-nodes) kullanabilirsiniz. <br>
+🔸 Validator olarak kaydolmak istiyorsanız, yeni bir evm cüzdanı oluşturun ve en az 2.5 Sepolia ETH ile fonlayın. <br>
 
 ⚠️ ÖNEMLİ: Ücretsiz versiyonu kullanıyorsanız ve Sepolia Ethereum RPC veya Sepolia Consensus (Beacon RPC) URL'sinde maksimum istek limitine ulaşırsanız, ya premium plana geçmeniz ya da limiti her aştığınızda RPC endpoint'ini değiştirmeniz gerekecektir.
 
