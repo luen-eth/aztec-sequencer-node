@@ -1,73 +1,73 @@
-<h2 align=center>Aztec Sequencer Node Guide</h2>
+<h2 align=center>Aztec Sequencer Node Rehberi</h2>
 
-Aztec is building a decentralized, privacy-focused network and the sequencer node is a key part of it. Running a sequencer helps produce and propose blocks using regular consumer hardware. This guide will walk you through setting one up on the testnet.
+Aztec, merkeziyetsiz ve gizlilik odaklı bir ağ inşa ediyor ve sequencer node bunun önemli bir parçası. Bir sequencer çalıştırmak, normal tüketici donanımı kullanarak bloklar üretmenize ve önermenize yardımcı olur. Bu rehber, testnet üzerinde bir sequencer kurmanız için size yol gösterecek.
 
-**Note : There’s no official confirmation of any rewards, airdrop, or incentives. This is purely for learning, contribution and being early in a cutting-edge privacy project.**
+**Not: Herhangi bir ödül, airdrop veya teşvik için resmi bir onay bulunmamaktadır. Bu tamamen öğrenme, katkıda bulunma ve öncü bir gizlilik projesinde erken olmak içindir.**
 
-## 💻 System Requirements
+## 💻 Sistem Gereksinimleri
 
-| Component      | Specification               |
+| Bileşen      | Özellikler               |
 |----------------|-----------------------------|
-| CPU            | 8-core Processor            |
+| CPU            | 8 çekirdekli İşlemci            |
 | RAM            | 16 GiB                      |
-| Storage        | 1 TB SSD                    |
-| Internet Speed | 25 Mbps Upload / Download   |
+| Depolama        | 1 TB SSD                    |
+| İnternet Hızı | 25 Mbps Yükleme / İndirme   |
 
-> [!Note]
-> **You can start running this node on a `4-core CPU`, `6 GB of RAM` and `25 GB of storage`. However, as uptime increases, it's important to meet the recommended system requirements—otherwise, your node may eventually crash.**
+> [!Not]
+> **Bu node'u `4 çekirdekli CPU`, `6 GB RAM` ve `25 GB depolama` ile başlatabilirsiniz. Ancak, çalışma süresi arttıkça, önerilen sistem gereksinimlerini karşılamanız önemlidir - aksi takdirde node'unuz çökebilir.**
 
-## 🌐 Rent VPS
-> [!Note]
-> **Renting VPS is not necessarily needed if your main goal is to take `Apprentice` role on Aztec Discord, You can run this node on WSL for 30 mins to get that role**
-- Visit : [PQ Hosting](https://pq.hosting/?from=622403&lang=en) (high price but crypto payment supported) or [contabo](https://contabo.com/en) or [hetzner](https://www.hetzner.com/cloud) to rent a VPS
-> [!Tip]
-> **If you don't know what a VPS is or how to buy one, you should watch [this video](https://youtu.be/vNBlRMnHggA?si=G1huqYU3ylCGoTQE) on my YouTube channel.**
+## 🌐 VPS Kiralamak
+> [!Not]
+> **Eğer ana hedefiniz Aztec Discord'da `Çırak` rolü almak ise, VPS kiralamak zorunlu değildir. Bu node'u WSL üzerinde 30 dakika çalıştırarak bu rolü alabilirsiniz**
+- Ziyaret edin: [PQ Hosting](https://pq.hosting/?from=622403&lang=en) (yüksek fiyat ama kripto ödemesi destekliyor) veya [contabo](https://contabo.com/en) veya [hetzner](https://www.hetzner.com/cloud) VPS kiralamak için
+> [!İpucu]
+> **Eğer VPS'in ne olduğunu veya nasıl satın alınacağını bilmiyorsanız, YouTube kanalımdaki [bu videoyu](https://youtu.be/vNBlRMnHggA?si=G1huqYU3ylCGoTQE) izlemelisiniz.**
 
-## ⚙️ Prerequisites
-- You can use [Alchemy](https://dashboard.alchemy.com/apps) or [Infura](https://developer.metamask.io/register) to get Sepolia Ethereum RPC.
-- You can use [Chainstack](https://chainstack.com/global-nodes) to get the Consensus URL (Beacon RPC URL).
-- Create a new evm wallet and fund it with at least 2.5 Sepolia ETH if you want to register as Validator.
+## ⚙️ Ön Gereksinimler
+- Sepolia Ethereum RPC için [Alchemy](https://dashboard.alchemy.com/apps) veya [Infura](https://developer.metamask.io/register) kullanabilirsiniz.
+- Consensus URL (Beacon RPC URL) için [Chainstack](https://chainstack.com/global-nodes) kullanabilirsiniz.
+- Validator olarak kaydolmak istiyorsanız, yeni bir evm cüzdanı oluşturun ve en az 2.5 Sepolia ETH ile fonlayın.
 
-> [!IMPORTANT]
-> **If you're using the free version and reach the maximum request limit on either the Sepolia Ethereum RPC or the Sepolia Consensus (Beacon RPC) URL, you'll need to either upgrade to a premium plan or change the RPC endpoint each time you hit the limit.**
+> [!ÖNEMLİ]
+> **Ücretsiz versiyonu kullanıyorsanız ve Sepolia Ethereum RPC veya Sepolia Consensus (Beacon RPC) URL'sinde maksimum istek limitine ulaşırsanız, ya premium plana geçmeniz ya da limiti her aştığınızda RPC endpoint'ini değiştirmeniz gerekecektir.**
 
-## 📥 Installation
-> [!Tip]
-> **You can watch this [video](https://youtu.be/2mBIRmMPSEM?si=TG5MRwQyZ5XqcfLI) to learn how to set up aztec sequencer node very easily.**
+## 📥 Kurulum
+> [!İpucu]
+> **Aztec sequencer node'u nasıl kuracağınızı öğrenmek için [bu videoyu](https://youtu.be/2mBIRmMPSEM?si=TG5MRwQyZ5XqcfLI) izleyebilirsiniz.**
 
-- Install `curl` and `wget` first
+- Önce `curl` ve `wget` kurun
 ```bash
 command -v curl >/dev/null 2>&1 || apt-get update && apt-get install -y curl; command -v wget >/dev/null 2>&1 || apt-get install -y wget
 ```
-- Execute either of the following commands to run your Aztec node
+- Aztec node'unuzu çalıştırmak için aşağıdaki komutlardan birini çalıştırın
 
 ```
 [ -f "aztec.sh" ] && rm aztec.sh; curl -sSL -o aztec.sh https://raw.githubusercontent.com/zunxbt/aztec-sequencer-node/main/aztec.sh && chmod +x aztec.sh && ./aztec.sh
 ```
-or
+veya
 ```
 [ -f "aztec.sh" ] && rm aztec.sh; wget -q -O aztec.sh https://raw.githubusercontent.com/zunxbt/aztec-sequencer-node/main/aztec.sh && chmod +x aztec.sh && ./aztec.sh
 ```
-## ⚡Commands
-- You can use this command to check logs of your node
+## ⚡Komutlar
+- Node'unuzun loglarını kontrol etmek için bu komutu kullanabilirsiniz
 ```
 sudo docker logs -f --tail 100 $(docker ps -q --filter ancestor=aztecprotocol/aztec:latest | head -n 1)
 ```
-- You can stop this node using this command
+- Node'u durdurmak için bu komutu kullanabilirsiniz
 ```
 sudo docker stop $(docker ps -q --filter ancestor=aztecprotocol/aztec:latest | head -n 1)
 ```
-## 🧩 Post-Installation
-> [!Note]
-> **After running node, you should wait at least 10 to 20 mins before your run these commands**
+## 🧩 Kurulum Sonrası
+> [!Not]
+> **Node'u çalıştırdıktan sonra, bu komutları çalıştırmadan önce en az 10-20 dakika beklemeniz gerekir**
 
-- Use this command to get `block-number`
+- `block-number` almak için bu komutu kullanın
 ```
 curl -s -X POST -H 'Content-Type: application/json' -d '{"jsonrpc":"2.0","method":"node_getL2Tips","params":[],"id":67}' http://localhost:8080 | jq -r '.result.proven.number'
 ```
-- After running this code, you will get a block number like this : 66666
+- Bu kodu çalıştırdıktan sonra şöyle bir blok numarası alacaksınız: 66666
 
-- Use that block number in the places of `block-number` in the below command to get `proof`
+- `proof` almak için aşağıdaki komutta `block-number` yerine bu blok numarasını kullanın
     
 ![Screenshot 2025-05-02 120017](https://github.com/user-attachments/assets/ed5ba08e-a1a9-48bc-8518-b23211ac7588)
 
@@ -75,18 +75,18 @@ curl -s -X POST -H 'Content-Type: application/json' -d '{"jsonrpc":"2.0","method
 curl -s -X POST -H 'Content-Type: application/json' -d '{"jsonrpc":"2.0","method":"node_getArchiveSiblingPath","params":["block-number","block-number"],"id":67}' http://localhost:8080 | jq -r ".result"
 ```
 
-- Now navigate to `operators | start-here` channel in [Aztec Discord Server](https://discord.com/invite/aztec)
-- Use the following command to get `Apprentice` role
+- Şimdi [Aztec Discord Sunucusu](https://discord.com/invite/aztec)'nda `operators | start-here` kanalına gidin
+- `Çırak` rolü almak için aşağıdaki komutu kullanın
 ```
 /operator start
 ```
-- It will ask the `address` , `block-number` and `proof` , Enter all of them one by one and you will get `Apprentice` instantly
+- Size `address`, `block-number` ve `proof` soracak, bunları tek tek girin ve `Çırak` rolünü anında alacaksınız
 
-## 🚀 Register as Validator
->[!WARNING]
->You may see an error like `ValidatorQuotaFilledUntil` when trying to register as a validator, which means the daily quota has been reached—convert the provided Unix timestamp to local time to know when you can try again to register as Validator.
+## 🚀 Validator Olarak Kaydolma
+>[!UYARI]
+>Validator olarak kaydolmaya çalışırken `ValidatorQuotaFilledUntil` gibi bir hata görebilirsiniz, bu günlük kotanın dolduğu anlamına gelir - verilen Unix zaman damgasını yerel saate dönüştürerek ne zaman tekrar Validator olarak kaydolmayı deneyebileceğinizi öğrenebilirsiniz.
 
-- Replace `SEPOLIA-RPC-URL` , `YOUR-PRIVATE-KEY` , `YOUR-VALIDATOR-ADDRESS` with actual value and then execute this command
+- `SEPOLIA-RPC-URL`, `YOUR-PRIVATE-KEY`, `YOUR-VALIDATOR-ADDRESS` yerine gerçek değerleri yazın ve bu komutu çalıştırın
 ```
 aztec add-l1-validator \
   --l1-rpc-urls SEPOLIA-RPC-URL \
