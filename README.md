@@ -1,6 +1,6 @@
 <h2 align=center>Aztec Sequencer Node Rehberi</h2>
 
-🔷 Aztec Network'e Hoş Geldiniz! 🔷
+
 
 Aztec, merkeziyetsiz ve gizlilik odaklı bir ağ inşa ediyor ve sequencer node bunun önemli bir parçası. Bir sequencer çalıştırmak, normal tüketici donanımı kullanarak bloklar üretmenize ve önermenize yardımcı olur. Bu rehber, testnet üzerinde bir sequencer kurmanız için size yol gösterecek.
 
