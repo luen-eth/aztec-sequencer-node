@@ -81,7 +81,7 @@ curl -s -X POST -H 'Content-Type: application/json' -d '{"jsonrpc":"2.0","method
 curl -s -X POST -H 'Content-Type: application/json' -d '{"jsonrpc":"2.0","method":"node_getArchiveSiblingPath","params":["block-number","block-number"],"id":67}' http://localhost:8080 | jq -r ".result"
 ```
 
-3️⃣ Discord'da /operator start komutunu kullanın ve istenen bilgileri girin
+3️⃣ Discord'da operators | start-here kanalında /operator start komutunu kullanın ve istenen bilgileri girin
 
 🚀 Validator Olarak Kaydolma 🚀
 
